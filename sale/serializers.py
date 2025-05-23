@@ -3,27 +3,27 @@ from .models import Tile, Laminate, Category, Purpose, Feature
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta: model = Category
-    fields = 'all'
+    fields = '__all__'
 
 class PurposeSerializer(serializers.ModelSerializer):
     class Meta: model = Purpose 
-    fields = 'all'
+    fields = '__all__'
 
 class FeatureSerializer(serializers.ModelSerializer):
     class Meta: model = Feature 
-    fields = 'all'
+    fields = '__all__'
 
 class TileSerializer(serializers.ModelSerializer):
     purpose = serializers.PrimaryKeyRelatedField(many=True, queryset=Purpose.objects.all())
     features = serializers.PrimaryKeyRelatedField(many=True, queryset=Feature.objects.all())
 
-class Meta:
-    model = Tile
-    fields = [
-        'id', 'name', 'description', 'price', 'discount', 'image', 'category', 'material',
-        'room', 'purpose', 'size', 'color', 'pattern', 'surface', 'shape',
-        'is_new', 'is_promo', 'style', 'features', 'country', 'collection'
-    ]
+    class Meta:
+        model = Tile
+        fields = [
+            'id', 'name', 'description', 'price', 'discount', 'image', 'category', 'material',
+            'room', 'purpose', 'size', 'color', 'pattern', 'surface', 'shape',
+            'is_new', 'is_promo', 'style', 'features', 'country', 'collection'
+        ]
 
 class LaminateSerializer(serializers.ModelSerializer):
     class Meta: model = Laminate
