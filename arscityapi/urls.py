@@ -21,9 +21,17 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('sale.urls')),  # Подключаем API
+    path('api/user/', include('user.urls')), 
+    path('api/order/', include('order.urls')),
+    path('api/auth/', include('djoser.urls')),
+    path('api/auth/', include('djoser.urls.jwt')),
+    path('api/tile/', include('tile.urls')),
+    path('api/laminate/', include('laminate.urls')),
+    path('api/workexample/', include('workexample.urls')),
+    path('api/', include('search.urls'))
 ]
 
-# Для обслуживания медиафайлов (фотографий)
+
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
