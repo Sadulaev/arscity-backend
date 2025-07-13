@@ -179,7 +179,7 @@ class Tile(models.Model):
     features = models.ManyToManyField(Feature, verbose_name="Особенности")
     country = models.ForeignKey(Country, on_delete=models.SET_NULL, null=True, verbose_name="Страна производитель")
     collection = models.ForeignKey(Collection, on_delete=models.CASCADE, related_name='tiles', null=True, verbose_name="Коллекция")
-    tile_type = models.CharField(max_length=10, choices=TILE_TYPES, default='base')
+    tile_type = models.CharField(max_length=10, choices=TILE_TYPES, default='base', verbose_name='тип плитки')
     popularity_score = models.IntegerField("Популярность от 1 до 10", default=1)
     
 
@@ -203,9 +203,19 @@ class Slider(models.Model):
         return self.title
     
 class Grout(models.Model):
+
+    TYPE_CHOICES = [
+        ("cement", "цементный"),
+        ("epoxy", "эпоксидный"),
+        ("polymeric", "полимерный"),
+        ("polyurethane", "полиуритановый"),
+        ("silicone", "силиконовый"),
+    ]
+
     name = models.CharField("Название", max_length=255)
     color = models.CharField("Цвет", max_length=100)
     price = models.DecimalField("Цена", max_digits=10, decimal_places=2)
+    type = models.CharField("Тип замазки", max_length=20, choices=TYPE_CHOICES, blank=True, null=True, default="")
     image1 = models.ImageField("Фотография 1", blank=True, null=True, upload_to='grouts/')
     image2 = models.ImageField("Фотография 2", blank=True, null=True, upload_to='grouts/')
     image3 = models.ImageField("Фотография 3", blank=True, null=True, upload_to='grouts/')
