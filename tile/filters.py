@@ -53,7 +53,7 @@ class CharInFilter(BaseInFilter, CharFilter):
 class GroutFilter(django_filters.FilterSet):
     name = django_filters.CharFilter(lookup_expr='icontains')
     color = django_filters.CharFilter(lookup_expr='icontains')
-    type = CharInFilter(field_name='type', lookup_expr='in')
+    typematerial = CharInFilter(field_name='typematerial', lookup_expr='in')
     price_min = django_filters.NumberFilter(field_name='price', lookup_expr='gte')
     price_max = django_filters.NumberFilter(field_name='price', lookup_expr='lte')
 
@@ -62,7 +62,7 @@ class GroutFilter(django_filters.FilterSet):
         fields = [
             'name', 
             'color', 
-            'type',
+            'typematerial',
             'price_min',
             'price_max',
         ]

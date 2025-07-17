@@ -154,6 +154,7 @@ class Laminate(models.Model):
     construction = models.ForeignKey(Construction, on_delete=models.SET_NULL, null=True, verbose_name="Конструкция")
     connection_type = models.ForeignKey(ConnectionType, on_delete=models.SET_NULL, null=True, verbose_name="Тип соединения")
     is_promo = models.BooleanField("Акция", default=False)
+    type = models.CharField(default="laminate")
 
     class Meta:
         verbose_name = 'Ламинат'
@@ -183,6 +184,8 @@ class Underlay(models.Model):
     image3 = models.ImageField(upload_to='underlay/', blank=True, null=True, verbose_name="Изображение 3")
     image4 = models.ImageField(upload_to='underlay/', blank=True, null=True, verbose_name="Изображение 4")
     image5 = models.ImageField(upload_to='underlay/', blank=True, null=True, verbose_name="Изображение 5")
+    type = models.CharField(default="underlay")
+    
 
     class Meta:
         verbose_name = 'Подложка'
@@ -212,7 +215,7 @@ class SkirtingBoard(models.Model):
     ]
 
     name = models.CharField("Название", max_length=255)
-    type = models.CharField("Тип", max_length=20, choices=TYPE_CHOICES)
+    typematerial = models.CharField("Тип", max_length=20, choices=TYPE_CHOICES)
     price = models.DecimalField("Цена", max_digits=10, decimal_places=2)
     thickness = models.DecimalField("Толщина (мм)", max_digits=5, decimal_places=2)
     height = models.DecimalField("Высота (мм)", max_digits=5, decimal_places=2)
@@ -223,6 +226,7 @@ class SkirtingBoard(models.Model):
     image3= models.ImageField(upload_to='skirtingBoard/', blank=True, null=True, verbose_name="Изображение 3")
     image4 = models.ImageField(upload_to='skirtingBoard/', blank=True, null=True, verbose_name="Изображение 4")
     image5 = models.ImageField(upload_to='skirtingBoard/', blank=True, null=True, verbose_name="Изображение 5")
+    type = models.CharField(default="skirtingboard")
 
     class Meta:
         verbose_name = 'Плинтус'

@@ -51,7 +51,7 @@ class CharInFilter(filters.BaseInFilter, filters.CharFilter):
 
 class SkirtingBoardFilter(django_filters.FilterSet):
     name = django_filters.CharFilter(lookup_expr='icontains')
-    type = CharInFilter(field_name='type', lookup_expr='in')
+    typematerial = CharInFilter(field_name='typematerial', lookup_expr='in')
     moisture_resistance = django_filters.CharFilter(lookup_expr='iexact')
     tone = django_filters.CharFilter(lookup_expr='iexact')
     price_min = django_filters.NumberFilter(field_name='price', lookup_expr='gte')
@@ -64,7 +64,7 @@ class SkirtingBoardFilter(django_filters.FilterSet):
     class Meta:
         model = SkirtingBoard
         fields = [
-            'name', 'type', 'moisture_resistance', 'tone',
+            'name', 'typematerial', 'moisture_resistance', 'tone',
             'price_min', 'price_max',
             'thickness_min', 'thickness_max',
             'height_min', 'height_max',
