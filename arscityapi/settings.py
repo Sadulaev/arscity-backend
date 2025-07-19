@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'order',
     'search',
     'advice',
+    'files'
 ]
 
 MIDDLEWARE = [
